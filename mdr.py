@@ -16,7 +16,7 @@ from sklearn.decomposition import PCA
 data_ori, data_f, data_l, item = getData(kind=3)
 
 # 取得参数
-info = InfoManager(data_f, data_l, 3)
+info = InfoManager(data_f, data_l, 2)
 data1, labels1, size1, colors1 = info.get_info(1, 5)
 data2, labels2, size2, colors2 = info.get_info(0, 20)
 # 准备二次降维的原始数据
@@ -54,16 +54,37 @@ t = 0
 
 def Callback():
     global colors1
+    global t
+    global pre_selected1, pre_selected2
     selected1 = source1.selected['1d']['indices']
     selected2 = source2.selected['1d']['indices']
     if selected1 and selected2:
+        if t:
+            selected1 = np.array(pre_selected1)[selected1]
+            selected2 = np.array(pre_selected2)[selected2]
+            t = 0
         res_label = np.bincount(labels2[selected2].astype('int'))
-        ca = np.argmax(res_label)
-        for i in selected1:
-            colors1[i] = color[ca]
-        source1.data = dict(x=data1[0],y=data1[1], fill_color=colors1, size=size1)
-        source2.data = dict(x=data2[0],y=data2[1], fill_color=colors2, size=size2)
-        Writedata(ca,selected1)
+        max_label = np.sort(res_label)[-1]
+        if len(res_label>0) and max_label < np.sum(res_label) * 0.8:
+            data_ch1 = data1_ori[selected1]
+            data_ch2 = data2_ori[selected2]
+            pre_selected1 = selected1
+            pre_selected2 = selected2
+            t = 1
+            data_ch = np.vstack([data_ch1, data_ch2])
+            count_1 = len(data_ch1)
+            data_emb = TSNE(n_components=2).fit_transform(data_ch)
+            data1_l = data_emb[:count_1].T
+            data2_l = data_emb[count_1:].T
+            source1.data = dict(x=data1_l[0],y=data1_l[1], fill_color=colors1[selected1], size=size1[selected1])
+            source2.data = dict(x=data2_l[0],y=data2_l[1], fill_color=colors2[selected2], size=size2[selected2])
+        else:
+            ca = np.argmax(res_label)
+            for i in selected1:
+                colors1[i] = color[ca]
+            source1.data = dict(x=data1[0],y=data1[1], fill_color=colors1, size=size1)
+            source2.data = dict(x=data2[0],y=data2[1], fill_color=colors2, size=size2)
+            Writedata(ca,selected1)
 
 # 插件及布局
 button = Button(label="确定")

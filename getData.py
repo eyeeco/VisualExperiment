@@ -12,6 +12,12 @@ def getData(kind=1):
         path_ori = "data_input/origin/1k.csv"
         data_l = np.repeat(range(10),100)
         data_ori = pd.read_csv(path_ori).values
+    elif kind  == 3:
+        path_ori = "data_input/origin/mnist.csv"
+        data_f = pd.read_csv(path_ori).values
+        data_l = np.repeat(range(10),6000)
+        data_ori = data_f
+
     item = path_ori.split("/")[-1].split(".")[0]
     path_gen = "data_input/data_"+ item +".csv"
     if not os.path.exists(path_gen):
