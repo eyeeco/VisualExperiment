@@ -1,0 +1,8 @@
+# 屏蔽目录
+data_output/
+origin/
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
