@@ -33,9 +33,9 @@ from sklearn.decomposition import PCA
 # print(end-start)
 
 # Cube
-# start = time.time()
-# read_data = pd.read_csv('data_input/cube/cube1_dark_labels_sort.csv')
-# data_embedded = TSNE(n_components=2).fit_transform(read_data)
-# pd.DataFrame(data_embedded).to_csv("data_input/data_cube1_dark.csv",index=False)
-# end = time.time()
-# print(end-start)
+start = time.time()
+read_data = pd.read_csv('data_input/cube/cube1_light_labels_sort.csv')
+data_embedded = TSNE(n_components=2).fit_transform(read_data)
+pd.DataFrame(data_embedded).to_csv("data_input/data_cube1_light.csv",index=False)
+end = time.time()
+print(end-start)

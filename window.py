@@ -7,24 +7,10 @@ from bokeh.layouts import row, column
 from bokeh.plotting import figure, curdoc
 from bokeh.models.widgets import TextInput
 
-from utils import InfoManager
+from utils import InfoManager, TestAcc
+from getData import getData
 from sklearn.manifold import TSNE, Isomap
 from sklearn.decomposition import PCA
-
-# 不同的实验只需修改这些参数
-# 1K 的参数
-# path = "data_input/data_1k.csv"
-# path_ori = "data_input/origin/1k.csv"
-# data_f = pd.read_csv(path).values
-# data_l = np.repeat(range(10),100)
-# data_ori = pd.read_csv(path_ori).values
-
-#  cube 的参数
-path = "data_input/data_cube1_dark.csv"
-path_ori = "data_input/cube/cube1_dark_labels_sort.csv"
-data_ori = pd.read_csv(path_ori).iloc[:,:3].values
-data_f = pd.read_csv(path).values
-data_l = pd.read_csv(path_ori).iloc[:,3].values
 
 # mnist 参数
 # path = "data_input/data_mnist.csv"
@@ -32,6 +18,8 @@ data_l = pd.read_csv(path_ori).iloc[:,3].values
 # data_f = pd.read_csv(path).values
 # data_l = np.repeat(range(10),100)
 # data_ori = data_f
+
+data_ori, data_f, data_l, item = getData(kind=2)
 
 # 取得参数
 info = InfoManager(data_f, data_l, 5)
@@ -41,7 +29,6 @@ data2, labels2, size2, colors2 = info.get_info(0, 20)
 data_order, label_order = info.get_basic()
 data1_ori = data_ori[data_order]
 data2_ori = data_ori[label_order]
-
 
 #Bokeh 绘图
 source1 = ColumnDataSource(data=dict(x=data1[0], y=data1[1], fill_color=colors1, size=size1))
@@ -55,7 +42,7 @@ director = TextInput(title="请输入实验者 姓名(拼音)")
 # 静态资源
 color = np.array(['#09eeee','black','green','red','blue','#339989','#89ffed','pink','#7D26CD','grey','white'])
 label_save = pd.DataFrame(np.repeat(-1,len(labels1)), columns=['label'])
-out_path = 'data_output/' + path.split("/")[-1].split(".")[0]
+out_path = 'data_output/' + item
 if not os.path.exists(out_path):
     os.makedirs(out_path)
 pd.DataFrame(labels1,columns=['label']).to_csv(out_path+'/results.csv',index_label='id')
@@ -67,6 +54,7 @@ def Writedata(mark=-1,list_selected=[]):
         usr_name = 'origin'
     label_save.iloc[list_selected,0] = mark
     label_save.to_csv(out_path+'/'+usr_name+'.csv',index_label='id')
+    TestAcc(label_save.values, labels1)
 
 t = 0
 

@@ -16,7 +16,7 @@ class InfoManager:
         data_length = len(self.data_f)
 
         interval = data_length//(len(np.bincount(self.data_l)) * self.points)
-        label_order = [x+1 for x in range(data_length)][::interval]
+        label_order = [x for x in range(data_length)][::interval]
         data_order = [x for x in range(data_length) if x not in label_order]
         return data_order, label_order
 
@@ -36,3 +36,15 @@ class InfoManager:
             size = np.repeat(size_t, length)
             colors = InfoManager.color[label]
             return data, label, size, colors
+
+def TestAcc(exp, truth):
+    count = 0
+    label_length = 0
+    for i in range(len(truth)):
+        if exp[i] != -1:
+            label_length += 1
+        if truth[i] == exp[i] :
+            count += 1
+
+    print("标记准确率：(只计算标记过的样本)", count/label_length)
+    print("标记准确率：(全部样本)", count/len(truth))
