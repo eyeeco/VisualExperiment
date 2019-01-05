@@ -13,10 +13,10 @@ from sklearn.manifold import TSNE, Isomap
 from sklearn.decomposition import PCA
 
 # 选择实验项目
-data_ori, data_f, data_l, item = getData(kind=3)
+data_ori, data_f, data_l, item = getData(kind=2)
 
 # 取得参数
-info = InfoManager(data_f, data_l, 2)
+info = InfoManager(data_f, data_l, 3)
 data1, labels1, size1, colors1 = info.get_info(1, 5)
 data2, labels2, size2, colors2 = info.get_info(0, 20)
 # 准备二次降维的原始数据

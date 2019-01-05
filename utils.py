@@ -14,10 +14,9 @@ class InfoManager:
 
     def get_basic(self):
         data_length = len(self.data_f)
-
-        interval = data_length//(len(np.bincount(self.data_l)) * self.points)
+        interval = data_length//(len(np.bincount(self.data_l)) * self.points )
         label_order = [x for x in range(data_length)][::interval]
-        label_order = [x  for x in label_order]
+        label_order = [x for x in label_order]
         data_order = [x for x in range(data_length) if x not in label_order]
         return data_order, label_order
 
@@ -49,3 +48,4 @@ def TestAcc(exp, truth):
 
     print("标记准确率：(只计算标记过的样本)", count/label_length)
     print("标记准确率：(全部样本)", count/len(truth))
+    return label_length

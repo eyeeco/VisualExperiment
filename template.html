@@ -1,0 +1,49 @@
+<style>
+h1 {
+    margin: 1em 0 0 0;
+    color: #2e484c;
+    font-family: 'Julius Sans One', sans-serif;
+    font-size: 1.8em;
+    text-transform: uppercase;
+}
+a:link {
+    font-weight: bold;
+    text-decoration: none;
+    color: #0d8ba1;
+}
+a:visited {
+    font-weight: bold;
+    text-decoration: none;
+    color: #1a5952;
+}
+a:hover, a:focus, a:active {
+    text-decoration: underline;
+    color: #9685BA;
+}
+p {
+    font: "Libre Baskerville", sans-serif;
+    text-align: justify;
+    text-justify: inter-word;
+    width: 80%;
+    max-width: 800;
+}
+</style>
+
+<h1>Perceptual Visual Interactive Learning</h1>
+
+<p>
+  Supervised learning methods are widely used in machine learning. However, the lack of labels in existing data limits the
+  application of these technologies. Visual interactive learning (VIL) compared with computers can avoid semantic gap, and solve the
+  labeling problem of small label quantity (SLQ) samples in a groundbreaking way. </p>
+<p>
+<h2>Tutorial: </h2>
+<p>1. 图中的点分为了若干类， 实验的流程便是通过圈选将 已有标记（有颜色）和 数据分布 来标记 待标记的点（无色）</p>
+<p>2. 操作分为两种方式，SIDR(Single Interactive Dimensionality Reduction) 和 MIDR(Multiple Interactive Dimensionality Reduction)</p>
+<p>3. SIDR便于介绍，选择图中相近的数据流行，之后确认选择。所选区域中所有未标记点被标记为 [区域中数量最多的已标记点类别] </p>
+<P>4. MIDR相对复杂，当用户难以确定某一类无标记点C的归属时（假设有近邻标记点A 和 近邻标记点B），将ABC一起圈选出来，此时系统判定对这些数据进行二次处理。
+用户会看到二次处理后的分布，在这个分布中判断数据应该属于哪个类别</p>
+<p>5. 标记流程可以参考文献中Fig. 6 这是一次完整的标记流程</p>
+<p>6. 请实验志愿者一定要输入自己的名字，没有名字标记无效！</p>
+<h3>Reference: </h3>
+参考文献  <a href="https://arxiv.org/pdf/1810.10789.pdf">Perceptual Visual Interactive Learning</a>
+<br />
