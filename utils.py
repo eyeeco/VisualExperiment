@@ -5,7 +5,7 @@ class InfoManager:
     """
     get the information for Bokeh Application
     """
-    color = np.array(['#09eeee','black','green','red','blue','#339989','#89ffed','pink','#7D26CD','grey','white'])
+    color = np.array(['#899933','black','green','red','blue','#339989','#89ffed','pink','#7D26CD','grey','white'])
 
     def __init__(self, data_f, data_l, points=1):
         self.data_f = data_f

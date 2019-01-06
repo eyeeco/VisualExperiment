@@ -15,9 +15,9 @@ from getData import getData
 from sklearn.manifold import TSNE
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--kind', type=int, default=2, help='order of Exp')
-parser.add_argument('--label_num', type=int, default=10, help='label_num each class')
-parser.add_argument('--midr', type=int, default=2, help='whether MIDR')
+parser.add_argument('--kind', type=int, default=3, help='order of Exp')
+parser.add_argument('--label_num', type=int, default=6, help='label_num each class')
+parser.add_argument('--midr', type=int, default=1, help='whether MIDR')
 opt = parser.parse_args()
 
 # 选择实验项目
@@ -43,7 +43,7 @@ director = TextInput(title="请输入实验者 姓名(拼音)")
 reviews = Slider(title="标记点的形状大小", value=10, start=5, end=20, step=1)
 
 # 静态资源
-color = np.array(['#09eeee','black','green','red','blue','#339989','#89ffed','pink','#7D26CD','grey','white'])
+color = np.array(['#899933','black','green','red','blue','#339989','#89ffed','pink','#7D26CD','grey','white'])
 label_save = pd.DataFrame(np.repeat(-1,len(labels1)), columns=['label'])
 out_path = 'data_output/%s/%d/%d'%(item, opt.midr, opt.label_num)
 if not os.path.exists(out_path):
@@ -55,7 +55,7 @@ def Writedata(mark=-1,list_selected=[]):
     usr_name = director.value.strip()
     if not usr_name:
         usr_name = 'origin'
-    if list_selected:
+    if list_selected != []:
         label_save.iloc[list_selected,0] = mark
         label_save.to_csv(out_path+'/'+usr_name+'.csv',index_label='id')
         label_length = TestAcc(label_save.values, labels1)
