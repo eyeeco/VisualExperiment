@@ -12,11 +12,11 @@ def index():
 <p><a href='http://10.7.52.27:5009/window' target='_blank'>实验一：1K数据集实验(SIDR, 每类标记 2)</a><p>
 <p><a href='http://10.7.52.27:5010/window' target='_blank'>实验一：1K数据集实验(MIDR, 每类标记 2)</a><p>
 <p><a href='http://10.7.52.27:5011/window' target='_blank'>实验二：魔方数据集实验(SIDR, 每类标记 2)</a><p>
-<p><a href='http://10.7.52.27:5012/window' target='_blank'>实验二：魔方数据集实验(MIDR, 每类标记 5)</a><p>
-<p><a href='http://10.7.52.27:5013/window' target='_blank'>实验二：魔方数据集实验(SIDR, 每类标记 2)</a><p>
+<p><a href='http://10.7.52.27:5012/window' target='_blank'>实验二：魔方数据集实验(MIDR, 每类标记 2)</a><p>
+<p><a href='http://10.7.52.27:5013/window' target='_blank'>实验二：魔方数据集实验(SIDR, 每类标记 5)</a><p>
 <p><a href='http://10.7.52.27:5014/window' target='_blank'>实验二：魔方数据集实验(MIDR, 每类标记 5)</a><p>
 <p><a href='http://10.7.52.27:5015/window' target='_blank'>实验三：MNIST数据集实验(SIDR, 每类标记 3)</a><p>
-<p><a href='http://10.7.52.27:5016/window' target='_blank'>实验三: MNIST数据集实验(SIDR, 每类标记 3)</a><p>
+<p><a href='http://10.7.52.27:5016/window' target='_blank'>实验三: MNIST数据集实验(SIDR, 每类标记 6)</a><p>
 </div>
 '''
 
