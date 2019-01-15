@@ -16,7 +16,7 @@ from sklearn.manifold import TSNE
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--kind', type=int, default=3, help='order of Exp')
-parser.add_argument('--label_num', type=int, default=6, help='label_num each class')
+parser.add_argument('--label_num', type=int, default=30, help='label_num each class')
 parser.add_argument('--midr', type=int, default=1, help='whether MIDR')
 opt = parser.parse_args()
 
@@ -25,8 +25,8 @@ data_ori, data_f, data_l, item = getData(kind=opt.kind)
 
 # 取得参数
 info = InfoManager(data_f, data_l, opt.label_num)
-data1, labels1, size1, colors1 = info.get_info(1, 5)
-data2, labels2, size2, colors2 = info.get_info(0, 10)
+data1, labels1, size1, colors1 = info.get_info(1, 7)
+data2, labels2, size2, colors2 = info.get_info(0, 20)
 # 准备二次降维的原始数据
 data_order, label_order = info.get_basic()
 data1_ori = data_ori[data_order]
@@ -40,7 +40,7 @@ pic = figure(tools=TOOLS,active_drag="lasso_select",plot_width=1000,plot_height=
 clr1 = pic.circle(x='x',y='y',source=source1,fill_color='fill_color',size='size')
 clr2 = pic.circle(x='x',y='y',source=source2,fill_color='fill_color',size='size')
 director = TextInput(title="请输入实验者 姓名(拼音)")
-reviews = Slider(title="标记点的形状大小", value=10, start=5, end=20, step=1)
+reviews = Slider(title="标记点的形状大小", value=10, start=10, end=30, step=1)
 
 # 静态资源
 color = np.array(['#899933','black','green','red','blue','#339989','#89ffed','pink','#7D26CD','grey','white'])
@@ -107,6 +107,7 @@ def Callback2():
             source2.data = dict(x=data2_l[0],y=data2_l[1], fill_color=colors2[selected2], size=size2[selected2])
         else:
             ca = np.argmax(res_label)
+            print(ca)
             for i in selected1:
                 colors1[i] = color[ca]
             source1.data = dict(x=data1[0],y=data1[1], fill_color=colors1, size=size1)

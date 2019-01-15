@@ -17,6 +17,7 @@ class InfoManager:
         interval = data_length//(len(np.bincount(self.data_l)) * self.points )
         label_order = [x for x in range(data_length)][::interval]
         label_order = [x for x in label_order]
+        print(label_order)
         data_order = [x for x in range(data_length) if x not in label_order]
         return data_order, label_order
 

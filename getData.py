@@ -2,6 +2,7 @@ import numpy as np
 import pandas as pd
 
 import os
+from sklearn.manifold import TSNE
 
 def getDataf(path_ori):
     item = path_ori.split("/")[-1].split(".")[0]
@@ -26,7 +27,7 @@ def getData(kind=1):
         data_ori = pd.read_csv(path_ori).values
         data_f, item = getDataf(path_ori)
     elif kind == 3:
-        item = 'mnist'
+        item = 'mnist_order'
         path_gen = "data_input/data_"+ item +".csv"
         data_f = pd.read_csv(path_gen).iloc[:,:2].values
         data_ori = data_f
